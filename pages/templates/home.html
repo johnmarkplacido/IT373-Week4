@@ -1,32 +1,10 @@
 {% extends 'base.html' %}
-{% block title %}Library Home{% endblock %}
+{% block title %}{{ title }}{% endblock %}
 {% block content %}
-<h1>Library</h1>
-
-<h2>Books</h2>
-<ul>
-    {% for book in books %}
-    <li>
-        <strong>{{ book.title }}</strong> by {{ book.author.name }}
-        <br>
-        Categories:
-        {% for category in book.categories.all %}
-        {{ category.name }}{% if not forloop.last %}, {% endif %}
-        {% endfor %}
-        <br>
-        Published: {{ book.published }}
-    </li>
-    {% empty %}
-    <li>No books available.</li>
-    {% endfor %}
-</ul>
-
-<h2>Categories</h2>
-<ul>
-    {% for category in categories %}
-    <li>{{ category.name }}</li>
-    {% empty %}
-    <li>No categories yet.</li>
-    {% endfor %}
-</ul>
+ <h1>Welcome</h1>
+ <ul>
+ {% for f in features %}
+ <li>{{ f }}</li>
+ {% endfor %}
+ </ul>
 {% endblock %}

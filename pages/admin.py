@@ -1,7 +1,13 @@
 from django.contrib import admin
-from .models import Author, Category, Book
+from pages.models import Post, Comment, Student, Course, Enrollment
+# Register your models here.
+class CommentInline(admin.StackedInline):
+    model = Comment
+    extra = 1
 
-# Register your models here
-admin.site.register(Author)
-admin.site.register(Category)
-admin.site.register(Book)
+@admin.register(Post)
+class PostAdmin(admin.ModelAdmin):
+    list_display = ("title", "body", "created_at")
+    search_fields = ("title", "body")
+    list_filter = ("created_at",)
+    ordering = ("-created_at",)
