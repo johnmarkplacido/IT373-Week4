@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponseBadRequest
 from pages.models import Post
-
+from .models import Book, Category
 # Create your views here.
 def home(request):
     ctx = {"title": "Home", "features": ["Django", "Templates", "Static files"]}
@@ -55,3 +55,10 @@ def post_delete(request, pk):
         post.delete()
         return redirect('post_list')
     return render(request, 'post_confirm_delete.html', {'post': post})
+
+
+def library_home(request):
+    books = Book.objects.all()
+    categories = Category.objects.all()
+    return render(request, 'library.html', {'books': books, 'categories': categories})
+
