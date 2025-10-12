@@ -1,17 +1,28 @@
 {% extends 'base.html' %}
-{% block title %}{{ title }}{% endblock %}
+
+{% block title %}Library Books{% endblock %}
+
 {% block content %}
-<h1>📚 Library Books</h1>
+<h1 class="mb-4">Library Books</h1>
+
+<div class="row">
     {% for book in books %}
-    <div class="book">
-        <p class="book-title">{{ book.title }}</p>
-        <p>Author: {{ book.author.name }}</p>
-        <p>Published: {{ book.published }}</p>
-        <p>Categories: 
-            {% for cat in book.categories.all %}
-                {{ cat.name }}{% if not forloop.last %}, {% endif %}
-            {% endfor %}
-        </p>
-    </div>
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">{{ book.title }}</h5>
+                    <p class="card-text"><strong>Author:</strong> {{ book.author }}</p>
+                    <p class="card-text"><strong>Published:</strong> {{ book.published }}</p>
+                    <p class="card-text"><strong>Category:</strong>
+                        {% for cat in book.categories.all %}
+                          {{ cat.name }}{% if not forloop.last %}, {% endif %}
+                        {% endfor %}
+                    </p>
+                </div>
+            </div>
+        </div>
+    {% empty %}
+        <p>No books available.</p>
     {% endfor %}
+</div>
 {% endblock %}

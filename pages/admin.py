@@ -7,6 +7,7 @@ class CommentInline(admin.StackedInline):
     extra = 1
 
 admin.site.register(Author)
+admin.site.register(Category)
 admin.site.register(Book)
 
 @admin.register(Post)
